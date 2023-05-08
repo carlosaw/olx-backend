@@ -14,6 +14,8 @@ class State extends Model
         'slug'
     ];
 
+    public $timestamps = false;
+
     // Um estado pode ter vários anúncios
     public function advertises()
     {

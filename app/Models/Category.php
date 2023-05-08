@@ -14,6 +14,8 @@ class Category extends Model
         'slug'
     ];
 
+    public $timestamps = false;
+
     // Uma categoria vai ter muitos anúncios
     public function advertises()
     {
