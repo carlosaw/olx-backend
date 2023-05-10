@@ -35,11 +35,16 @@ class UserController extends Controller
 
         if(Auth::attempt($data)) {
             $user = Auth::user();
-            $response = [
-                'error' => '',
-                'token' => $user->createToken('Login_token')->plainTextToken
-            ];
-            return response()->json($response);
+            if ($user instanceof \App\Models\User) {
+                $response = [
+                    'error' => '',
+                    'token' => $user->createToken('Login_token')->plainTextToken
+                ];
+                return response()->json($response);
+            } else {
+                // Handle Error. Not logged in or guard did not return a User object.
+            }
+            
         }
         return response()->json(['error' => 'Usuário e/ou Senha Inválidos!']);
     }
